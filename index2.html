@@ -1,0 +1,355 @@
+<?php
+$error=isset($_GET['error']) ? $_GET['error'] :'';
+$succes=isset($_GET['succes']) ? $_GET['succes'] :'';
+$error_1=isset($_GET['error_1']) ? $_GET['error_1'] :'';
+$succes_1=isset($_GET['succes_1']) ? $_GET['succes_1'] :'';
+$error_2=isset($_GET['error_2']) ? $_GET['error_2'] :'';
+$error_3=isset($_GET['error_3']) ? $_GET['error_3'] : ''; 
+
+require('data/base.php');
+$sql_select=("SELECT * FROM mannequin_simple");
+$sql_select_table=mysql_query($sql_select,$link) or die ("Erreur de selection");
+
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Mannequin</title>
+     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">	
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body id="home" >
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+    <div class="container" >
+      <a href="index.html"  class="navbar-brand"  >Mannequin kanto</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+          
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse" >
+          <ul class="navbar-nav ml-auto">
+                <li class="nav-item" >
+                    <a class="nav-link" href="#home" > Home </a>
+                </li>
+                    <li class="nav-item" >
+                    <a class="nav-link" href="#inscription" > Service premium </a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="" > A propos des mannequins </a>
+                </li>
+                    <li class="nav-item" >
+                    <a class="nav-link" href="#main-footer" > Contact </a>
+                </li>
+                </ul>
+        </div>
+    </div>
+
+  </nav>
+   
+            
+    
+    
+
+
+
+    <!-- DEBUT SECTION -->
+            <header id="home-section">
+                <div class="dark-overlay" >
+                    <div class="home-inner" >
+                        <div class="container" >
+                        <legend>Bienvenue au agence mannequin kanto</legend>
+                            <div class="row" >
+                            <div class="col-lg-8 d-none d-lg-block ">
+                            
+                                <h1 class="display-4"> Agence de mannequina pour votre projet, faite nous confiance ! </h1>
+                                <div class="d-flex flex-row">
+                               		<div class="p-4 align-self-start ">
+                               			<i class="fa fa-check"></i>
+                               		</div>
+                               		<div class="p-4 align-self-end">
+                               			Des mannequins hommes et femmes de nombreux choix
+                               		</div>
+
+                                </div>
+
+                                <div class="d-flex flex-row">
+                               		<div class="p-4 align-self-start ">
+                               			<i class="fa fa-check"></i>
+                               		</div>
+                               		<div class="p-4 align-self-end">
+                               			Des mannequins qui a de l'experience 
+                               		</div>
+
+                                </div>
+ 
+                                <div class="d-flex flex-row">
+                               		<div class="p-4 align-self-start ">
+                               			<i class="fa fa-check"></i>
+                               		</div>
+                               		<div class="p-4 align-self-end">
+                               			Des mannequins disponible de suite
+                               		</div>
+
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4">
+                            
+                            <div class="card bg-info text-center card-form ">
+
+                            <div class="card-body">
+                                <h3> Inscription premium </h3>
+                                 <p> Saisisier votre information </p>
+
+                                <form method="POST" action="insertion/premium.php" >
+                                    <div class="form-group" >
+                                        <input type="text" name="nom" class="form-control form-control-lg" placeholder="Votre nom">
+                                        <input type="text" name="adresse" class="form-control form-control-lg" placeholder="Votre adresse">
+                                        <input type="email" name="email" class="form-control form-control-lg" placeholder="email">
+                                        <input type="password" name="mdp" class="form-control form-control-lg" placeholder="Votre mots de passe">
+                                        <input type="password" name="mdp1" class="form-control form-control-lg" placeholder="confirmation mots de pass">
+                                    
+                                    </div>
+                                    <input type="submit" name="btn_1" value="Inscription !" class="btn btn-primary  btn-outline-light btn-block">
+                                    <a href="#inscription"  class="btn btn-primary  btn-outline-light btn-block">Se connecter !</a>
+                                </form>
+                                 <span style="color:#fff; width:20px; background-color:red" > <?php switch ($error_1) {
+                                     case 1:
+                                       echo "Veuillez remplir tous les champs";
+                                         break;
+                                    case 2:
+                                       echo "Mots de pass non identiques";
+                                         break;
+                                     
+                                     
+                                 } ?></span>
+                                  <span style="color:#fff; width:20px; background-color:green" > <?php switch ($succes_1) {
+                                     case 1:
+                                       echo "Enregistrement reussie";
+                                         break;
+                                    
+                                     
+                                     
+                                 } ?></span>
+                            </div>
+
+                            </div>
+                            </div>
+
+                            </div>
+                            
+                           <!-- END CONTAINER --> 
+                        </div>
+                        </div>
+                   </div>
+            </header>
+            
+   <!-- FORMULAIRE DE SAISIE DES MANNEQUINS -->   
+    <div class="container">
+        <div class="row" >
+            <div class="col-lg-12">
+            	<div class="form_sa">
+            	<div class="card bg-primary text-center card-form " >
+            		<div class="card-body">
+            				<p> Votre choix des mannequins
+            						<span style="color:#fff; width:20px; background-color:red; "><?php 
+            						switch ($error) {
+            						 	case 1:
+            						 		echo "Veuillez remplir les champs";
+            						 		break;
+            						 	case 2:
+            						 		echo "Le nombre ne doits pas depasser de 20";
+            						 		break;
+           						 } 
+
+
+            						?></span>
+                                    <span style="color:#fff; witdh:20px; background-color:green">
+                                        <?php
+                                            switch ($succes){
+                                                case 1:
+                                                    echo "Enregistrement reussie est envoyé";
+                                                    break;
+                                            }
+                                        ?>
+                                    </span>
+
+            				 </p>
+
+            					<form method="POST" action="insertion/client.php" >
+	            					<div class="form-group">
+	            						<input type="text" name="nom" class="form-control form-control-lg" placeholder="Votre nom">
+	            						<input type="text" name="nomso" class="form-control form-control-lg" placeholder="Nom de la societe">
+	            						<input type="text" name="adresse_so" class="form-control form-control-lg" placeholder="Adresse de la sociéte">
+	            						<input type="text" name="nbrla" class="form-control form-control-lg" placeholder="Nombre des mannequins homme">
+	            						<input type="text" name="nbrva" class="form-control form-control-lg" placeholder="Nombre des mannequins femme">
+	            						<input type="text" name="projet" class="form-control form-control-lg" placeholder="Votre projet">
+	            					</div>
+	            					<input type="submit" name="btn" value="Enregistrer" class="btn btn-primary btn-outline-light" >
+	            					<a class="btn btn-primary btn-outline-light" href="#liste_tab">Listes mannequins</a>
+	            				</form>
+					</div>
+            		</div>
+            	</div>
+            </div>
+        </div>
+
+
+    <!-- END CONTAINER -->
+    </div>
+
+<!-- FORMULAIRE DE CONNEXION -->
+<section id="inscription" class="bg-light text-muted py-5">
+    <div class="container" >
+         <div class="row" >
+              <div class="col-lg-8 d-none d-lg-block">
+                  <h1 class="display-4 text-black">Formulaire de connexion pour les membres prémiums</h1>
+                 
+              
+              </div> 
+              
+              <div class=col-lg-4>
+                  <div class="card bg-primary text-center text-white card-form">
+                      <div class="card-body">
+                          <h3> Se connecter ! </h3>
+                             <form  action="insertion/conexion_pre.php" method="POST">
+                                <div class="form-group">
+                                  <input type="email" name="email" class="form-control form-control-lg" placeholder="Email">
+                                  <input type="password" name="mdp" class="form-control form-control-lg" placeholder="Votre mots de passe">
+                                </div>
+                                  <input type="submit" name="btn_2" value="Se connecter !" class="btn btn-primary btn-outline-light">
+                              </form>
+                                  <span style="color:#fff; width:20px; border-radius: 2px; background-color:red;">
+                                   <?php
+                                   switch ($error_2) {
+                                     case 1:
+                                       echo "Veuillez remplir tous les champs";
+                                       break;
+                                    case 2:
+                                    echo "Veuillez verifier votre email et mots de passe";
+                                    break;
+                                     case 3 :
+                                    echo "Vous n'avez pas encore de compte premium";
+                                    break;
+                                     
+                                   }
+
+                                   ?>
+                                  </span>
+
+                      </div>                      
+                  </div>
+
+              </div>
+         </div>                                      
+    </div>
+
+
+
+</section>
+
+<!-- SECTION TABLEAU LISTES DES MANNEQUINS -->
+<section id="liste_tab" class="bg-primary">
+  <div class="container" >
+    <div class="col text-center">
+      <div class="p-5">
+        <h2 class="display-4" > Lites des mannequins </h2>
+        <table class="table table-bordered table-condensed table-stripeds">
+          <thead>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Adresse</th>
+              <th>Taille</th>
+              <th>Poids</th>
+              <th>Ages</th>                     
+          </thead> 
+          <tbody>
+            <?php
+            while($data=mysql_fetch_array($sql_select_table))
+            {
+              ?>
+                 <tr>
+                    <td><?php echo $data['nom_ma'];  ?></td>
+                    <td><?php echo $data['prenom_ma'];  ?></td>
+                    <td><?php echo $data['adresse_ma'];  ?></td>
+                    <td><?php echo $data['taille'] ; ?></td>
+                    <td><?php echo $data['poids'];  ?></td>
+                    <td><?php echo $data['age'];  ?></td>
+                </tr>
+             
+              <?php
+            }
+            ?>
+           
+          </tbody>        
+        </table>        
+      </div>    
+    </div>    
+  </div> 
+</section>
+
+
+<!-- MAIN FOOTER -->
+<footer id="main-footer" class="bg-dark" >
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <div class="py-4">
+          <h1 class="h3" > Mannequin Kanto  </h1>
+          <p> Copyright & copy 2018 </p>
+          <button class="btn btn-info" data-toggle="modal" data-target="#contactModal">Contact us </button>
+        </div>
+      </div>
+      
+    </div>  
+  </div>
+
+</footer>
+
+<!-- CONTACT MODAL -->
+<div class="modal fade text-dark" id="contactModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="ContactModalTitle">Contactez-nous</h5>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="contact.php" >
+              <div class="form-group">
+                  <label for="nom">Name</label>
+                  <input type="text" class="form-control" name="nom">
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email">
+              </div>
+              <div class="form-group">
+                  <label for="coment">Commentaire</label>
+                  <textarea class="form-control" name="coment" ></textarea>
+              </div>
+              <div class="modal-footer" >
+            <input type="submit" value=" Contactez-nous" name="btn_contact" class="btn btn-primary btn-block">
+            
+          </div>
+          <div class="py-4" >
+            <span>Veuillez remplir tous les champs svp!!</span>
+            
+          </div>
+          </form>
+           
+        </div>
+
+         
+    </div>   
+  </div>
+</div>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
